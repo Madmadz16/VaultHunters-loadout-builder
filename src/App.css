@@ -1,0 +1,53 @@
+/* your CSS */
+.left-panel {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 200px; /* adjust as needed */
+	background: #f0f0f0;
+	overflow: auto;
+}
+
+.right-panel {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 200px; /* adjust as needed */
+	background: #e0e0e0;
+	overflow: auto;
+}
+
+/* if you need a center area between them: */
+.main-content {
+	margin: 0 200px; /* should match panel widths */
+	padding: 20px;
+}
+
+.stats-container {
+	display: flex;
+	gap: 20px; /* space between columns */
+}
+
+.left-panel,
+.right-panel {
+	flex: 1; /* each takes equal width */
+	/* or you can set a fixed width:
+     width: 200px; */
+}
+
+.table {
+	width: 250px;
+	table-layout: fixed;
+}
+
+/* GearMaker modal overlay background */
+.gear-modal-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* GearMaker modal dialog max-width */
+.gear-modal-dialog-custom {
+  width: 500px;
+}
