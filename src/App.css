@@ -51,3 +51,24 @@
 .gear-modal-dialog-custom {
   width: 500px;
 }
+
+
+.scrappy {
+	background-color: gray;
+}
+
+.common {
+	background-color: skyblue;
+}
+
+.rare {
+	background-color: yellow;
+}
+
+.epic {
+	background-color: purple;
+}
+
+.omega {
+	background-color: green;
+}

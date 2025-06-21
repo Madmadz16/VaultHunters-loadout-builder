@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Button from './components/Button';
 import Separator from './components/Separator';
 import Slot from './components/Slot';
-import Stats from './components/stats';
+import Stats from './components/Stats';
 import CreateGearMenu from './components/CreateGearMenu';
 import SliderControl from './components/Slider';
 import GearMaker from './components/GearMaker';
@@ -74,7 +74,7 @@ function App() {
 			
 			<SliderControl min={0} max={100} value={0} label='Level'></SliderControl>
 			<CreateGearMenu gear={gear} show={gearMenuOpen} onClose={() => setGearMenuOpen(false)} />
-			<GearMaker rarity='epic' level={25} type="Sword" show={gearMaker} onClose={() => setGearMaker(false)}/>
+			<GearMaker rarity='epic' level={100} type="Sword" show={gearMaker} onClose={() => setGearMaker(false)}/>
 
 			<Separator name="Hotbar">
 				{[1, 2, 3, 4, 5, 6, 7, 8, 9].map((id) => (
