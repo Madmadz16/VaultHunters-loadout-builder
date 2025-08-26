@@ -13,17 +13,24 @@ interface AttributesProps {
 const BaseAttributes = ({ attributes, level }: AttributesProps) => {
   if (!attributes.length) return null
 
+  const filteredAttributes = attributes.filter((attr) => {
+    const firstTier = attr.tiers[0];
+    const value = firstTier.value as TierValue;
+
+    // Skip if flag exists and is false
+    const hasFlag = 'flag' in value;
+    return !(hasFlag && !value.flag); // Include only attributes where flag is true or doesn't exist
+  });
+
   return (
     <>
       <b className='ms-2'>Base Attributes</b>
       <ul className="list-group list-group-flush">
-        {attributes.map(attr => {
+        {filteredAttributes.map((attr, i) => {
           const firstTier = attr.tiers[0]
           const value = firstTier.value as TierValue
 
-          // skip if flag exists and is false
           const hasFlag = 'flag' in value
-          if (hasFlag && !value.flag) return null
 
           // nice label
           const raw = attr.attribute.split(':')[1] || attr.attribute
@@ -57,23 +64,24 @@ const BaseAttributes = ({ attributes, level }: AttributesProps) => {
               max={overallMax}
               step={overallStep}
               value={initialValue}
+              id={`attribute-base-${i}`}
               // onChange={(v:string) => console.log(attr.attribute, v)}
               />
             )
           }
 
           return (
-            <li key={attr.attribute} className="list-group-item d-flex align-items-center">
+            <li key={attr.attribute} className={`list-group-item d-flex align-items-center attribute-base`}>
               <span className='me-2'>{label}</span>
               {hasFlag && (
                 <input
                   type="checkbox"
                   className="form-check-input me-2"
                   defaultChecked={false}
+                  id={`attribute-base-${i}`}
                 />
               )}
               {sliderElement}
-              
             </li>
           )
         })}

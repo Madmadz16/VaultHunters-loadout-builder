@@ -6,9 +6,11 @@ interface SliderControlProps {
 	step?: number;
 	value: number;
 	label?: string;
+	id?: string
+	onChange?: (level: number) => void;
 }
 
-const SliderControl = ({ min, max, step = 1, value, label }: SliderControlProps) => {
+const SliderControl = ({ min, max, step = 1, value, label, id, onChange }: SliderControlProps) => {
 	const [internal, setInternal] = useState<number>(value);
 
 	// sync internal if parent value changes
@@ -21,17 +23,19 @@ const SliderControl = ({ min, max, step = 1, value, label }: SliderControlProps)
 		if (!isNaN(val)) {
 			setInternal(val);
 		}
+		if (onChange) onChange(Number(e.target.value));
 	};
 
 	const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const val = Number(e.target.value);
 		setInternal(val);
+		if (onChange) onChange(Number(e.target.value));
 	};
 	return (
 		<>
 			{/* label and number input side by side */}
+			{label && <label className="form-label me-2 mb-0">{label}</label>}
 			<div className="d-flex align-items-center mb-2">
-				{label && <label className="form-label me-2 mb-0">{label}</label>}
 				<input
 					type="number"
 					className="form-control text-center"
@@ -43,9 +47,11 @@ const SliderControl = ({ min, max, step = 1, value, label }: SliderControlProps)
 					onChange={handleInputChange}
 				/>
 			</div>
+			{min && <label className={`form-label me-2 mb-0 `}>{min}</label>}
 			<input
 				type="range"
-				className="form-range"
+				className={`form-range`}
+				id={id}
 				style={{ maxWidth: 200, margin: '0 auto' }}
 				value={internal}
 				min={min}
@@ -53,6 +59,7 @@ const SliderControl = ({ min, max, step = 1, value, label }: SliderControlProps)
 				step={step}
 				onChange={handleSliderChange}
 			/>
+			{max && <label className="form-label me-2 mb-0">{max}</label>}
 		</>
 	);
 };

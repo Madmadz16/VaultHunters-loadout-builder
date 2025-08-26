@@ -44,31 +44,26 @@
 
 /* GearMaker modal overlay background */
 .gear-modal-overlay {
-  background-color: rgba(0, 0, 0, 0.5);
+	background-color: rgba(0, 0, 0, 0.5);
 }
 
 /* GearMaker modal dialog max-width */
 .gear-modal-dialog-custom {
-  width: 500px;
+	width: 500px;
 }
 
-
-.scrappy {
-	background-color: gray;
+.velara {
+	background-color: #28a745;
 }
 
-.common {
-	background-color: skyblue;
+.idona {
+	background-color: #dc3545;
 }
 
-.rare {
-	background-color: yellow;
+.wendarr {
+	background-color: #ffc107;
 }
 
-.epic {
-	background-color: purple;
-}
-
-.omega {
-	background-color: green;
+.tenos {
+	background-color: #0d6efd;
 }

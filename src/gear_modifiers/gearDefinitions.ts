@@ -9,6 +9,10 @@ import helmet from './helmet.json';
 import chestplate from './chestplate.json';
 import leggings from './leggings.json';
 import boots from './boots.json';
+import velara from "./idol_benevolent.json";
+import idona from "./idol_malevolence.json";
+import tenos from "./idol_omniscient.json";
+import wendarr from "./idol_timekeeper.json";
 
 export type GearType =
 	| 'Sword'
@@ -21,7 +25,8 @@ export type GearType =
 	| 'Helmet'
 	| 'Chestplate'
 	| 'Leggings'
-	| 'Boots';
+	| 'Boots'
+  | 'God Idol';
 
 export interface ModifierGroup {
 	implicits: string[];
@@ -65,8 +70,9 @@ export interface PotionEffectValue {
 
 // new “chance‐effect” payload:
 export interface EffectChanceValue {
-  effectKeys: string[]
-  name: string
+  effectKeys?: string[]
+  effectKey?: string
+  name?: string
   minChance: number
   maxChance: number
   step: number
@@ -113,6 +119,7 @@ export interface RawModifierGroup {
 export interface GearDefinition {
   ext: 'gif' | 'png';
   modifierGroup: RawModifierGroup;
+  variants?: Record<string, RawModifierGroup>;
 }
 
 export interface RawModifierGroup {
@@ -151,4 +158,42 @@ export const gearDefinitions: Record<GearType, GearDefinition> = {
   Chestplate:  { ext: 'gif', modifierGroup: normalizeGroup(chestplate.modifierGroup) },
   Leggings:    { ext: 'gif', modifierGroup: normalizeGroup(leggings.modifierGroup) },
   Boots:       { ext: 'gif', modifierGroup: normalizeGroup(boots.modifierGroup) },
+  'God Idol': {
+    ext: 'png',
+    modifierGroup: normalizeGroup({
+      BASE_ATTRIBUTES: [],
+      IMPLICIT: [],
+      PREFIX: [],
+      SUFFIX: [],
+      CRAFTED_PREFIX: [],
+      CRAFTED_SUFFIX: [],
+      CORRUPTED_IMPLICIT: [],
+    }),
+    variants: {
+      Velara: normalizeGroup({
+        ...velara.modifierGroup,
+        CRAFTED_PREFIX: [],
+        CRAFTED_SUFFIX: [],
+        CORRUPTED_IMPLICIT: [],
+      }),
+      Idona: normalizeGroup({
+        ...idona.modifierGroup,
+        CRAFTED_PREFIX: [],
+        CRAFTED_SUFFIX: [],
+        CORRUPTED_IMPLICIT: [],
+      }),
+      Tenos: normalizeGroup({
+        ...tenos.modifierGroup,
+        CRAFTED_PREFIX: [],
+        CRAFTED_SUFFIX: [],
+        CORRUPTED_IMPLICIT: [],
+      }),
+      Wendarr: normalizeGroup({
+        ...wendarr.modifierGroup,
+        CRAFTED_PREFIX: [],
+        CRAFTED_SUFFIX: [],
+        CORRUPTED_IMPLICIT: [],
+      }),
+    },
+  },
 };

@@ -155,8 +155,6 @@
     ],
     "PREFIX": [],
     "SUFFIX": [
-      
-
       { "attribute": "the_vault:mana_regen",
         "group": "ModManaRegen",
         "identifier": "the_vault:mod_mana_regen",
