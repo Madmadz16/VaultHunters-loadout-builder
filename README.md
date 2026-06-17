@@ -1,54 +1,102 @@
-# React + TypeScript + Vite
+# Vault Hunters Loadout Builder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A web-based tool for building and managing gear loadouts for the [Vault Hunters Minecraft](https://www.curseforge.com/minecraft/modpacks/vault-hunters-1-18-2) mod. Design and tinker with equipment configuration by selecting gear, customizing attributes, and applying modifiers.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Gear Selection** - Choose from a library of armor, weapons, and accessories
+- **Attribute Customization** - Customize gear attributes including base stats and additional attributes
+- **Modifier System** - Apply abilities, talents, expertises, researches, and other modifiers to your gear
+- **Gear Storage** - Save and load your gear configurations locally
+- **Share Loadouts** - Compress and share your loadout configurations with others
+- **Visual Feedback** - Real-time display of selected gear with preview images
+- **Responsive Design** - Clean, intuitive Bootstrap-based interface
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Frontend Framework**: React 19 with TypeScript
+- **Build Tool**: Vite 6
+- **Styling**: Bootstrap 5
+- **Additional**: Brotli compression for gear sharing
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Installation
+
+### Prerequisites
+- Node.js (v16 or higher)
+- npm or yarn
+
+### Setup
+
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd VaultHunters-loadout-builder
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+2. Install dependencies:
+```bash
+npm install
 ```
+
+## Available Scripts
+
+- `npm run dev` - Start the development server with HMR
+- `npm run build` - Build the project for production
+- `npm run lint` - Run ESLint to check code quality
+- `npm run preview` - Preview the production build
+
+## Usage
+
+1. **Start the dev server**:
+```bash
+npm run dev
+```
+
+2. **Create a Loadout**:
+   - Select your gear type from available options
+   - Choose your base gear item
+   - Customize attributes and add modifiers
+   - Apply additional effects like idols and abilities
+
+3. **Manage Your Loadout**:
+   - Save your configurations locally
+   - Load previously saved loadouts
+   - Share compressed loadout data with other players
+
+## Project Structure
+
+```
+src/
+├── components/          # React components for gear building UI
+├── Services/           # Business logic for gear, storage, and attributes
+├── gear_modifiers/     # Gear data definitions and modifier configurations
+├── data/              # Core data structures and interfaces
+└── utils/             # Utility functions
+
+public/
+├── gear_images/       # Visual assets for gear items
+└── unique_images/     # Unique gear item artwork
+
+texture_json/          # Minecraft texture data for gear visualization
+```
+
+## Key Components
+
+- **GearMaker** - Main component for creating and editing gear items
+- **GearDisplay** - Displays selected gear with visual feedback
+- **GearSelector** - Interface for choosing gear types and items
+- **Attributes** - Component for managing gear attributes and modifiers
+- **Stats** - Displays calculated gear statistics
+
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+The MIT License is a permissive open source license that allows:
+- ✅ Commercial use
+- ✅ Modification
+- ✅ Distribution
+- ✅ Private use
+
+With the only requirement that the original license and copyright notice be included.

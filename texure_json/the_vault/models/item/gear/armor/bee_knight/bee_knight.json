@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "the_vault:item/gear/armor/_unidentified/leggings",
+    "layer1": "the_vault:item/gear/armor/bee_knight/leggings_overlay"
+  }
+}

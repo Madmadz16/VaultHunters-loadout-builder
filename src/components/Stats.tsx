@@ -14,7 +14,7 @@ const Stats = ({ stats }: StatsProps) => {
 			{stats.length === 0 && <p>No stat found</p>}
 			<ul className="list-group">
 				{stats.map((stat, idx) => (
-					<li key={idx} className="list-group-item d-flex justify-content-between">
+					<li key={idx} className={`list-group-item d-flex justify-content-between ${idx % 2 === 0 ? 'bg-light' : ''}`}>
 						<span>{stat.name}</span>
 						<span>{stat.power}</span>
 					</li>

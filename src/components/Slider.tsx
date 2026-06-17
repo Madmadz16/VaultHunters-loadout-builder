@@ -13,7 +13,6 @@ interface SliderControlProps {
 const SliderControl = ({ min, max, step = 1, value, label, id, onChange }: SliderControlProps) => {
 	const [internal, setInternal] = useState<number>(value);
 
-	// sync internal if parent value changes
 	useEffect(() => {
 		setInternal(value);
 	}, [value]);
@@ -33,7 +32,6 @@ const SliderControl = ({ min, max, step = 1, value, label, id, onChange }: Slide
 	};
 	return (
 		<>
-			{/* label and number input side by side */}
 			{label && <label className="form-label me-2 mb-0">{label}</label>}
 			<div className="d-flex align-items-center mb-2">
 				<input

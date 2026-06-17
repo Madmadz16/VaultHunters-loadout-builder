@@ -4,6 +4,7 @@ import type {
   RangeValue
 } from '../gear_modifiers/gearDefinitions'
 import SliderControl from './Slider'
+import { formatAttributeIdentifier } from '../Services/attributeService';
 
 interface AttributesProps {
   attributes: AttributeDefinition[]
@@ -14,12 +15,22 @@ const BaseAttributes = ({ attributes, level }: AttributesProps) => {
   if (!attributes.length) return null
 
   const filteredAttributes = attributes.filter((attr) => {
-    const firstTier = attr.tiers[0];
-    const value = firstTier.value as TierValue;
+    const applicable = attr.tiers.filter(
+      t => t.minLevel <= level && (t.maxLevel === -1 || t.maxLevel >= level)
+    );
+    if (applicable.length === 0) return false;
 
-    // Skip if flag exists and is false
-    const hasFlag = 'flag' in value;
-    return !(hasFlag && !value.flag); // Include only attributes where flag is true or doesn't exist
+    const hasEnabledFlag = applicable.some((t) => {
+      const value = t.value as TierValue;
+      return 'flag' in value && value.flag;
+    });
+
+    const hasNumericTier = applicable.some((t) => {
+      const value = t.value as TierValue;
+      return 'min' in value && 'max' in value && 'step' in value;
+    });
+
+    return hasEnabledFlag || hasNumericTier;
   });
 
   return (
@@ -32,16 +43,10 @@ const BaseAttributes = ({ attributes, level }: AttributesProps) => {
 
           const hasFlag = 'flag' in value
 
-          // nice label
-          const raw = attr.attribute.split(':')[1] || attr.attribute
-          const label = raw.charAt(0).toUpperCase() + raw.slice(1)
-
-          // pick all tiers that include this level
           const applicable = attr.tiers.filter(
             t => t.minLevel <= level && (t.maxLevel === -1 || t.maxLevel >= level)
           )
 
-          // only numeric tiers
           const numericTiers = applicable
             .filter(
               t => 'min' in t.value && 'max' in t.value && 'step' in t.value
@@ -65,14 +70,13 @@ const BaseAttributes = ({ attributes, level }: AttributesProps) => {
               step={overallStep}
               value={initialValue}
               id={`attribute-base-${i}`}
-              // onChange={(v:string) => console.log(attr.attribute, v)}
               />
             )
           }
 
           return (
             <li key={attr.attribute} className={`list-group-item d-flex align-items-center attribute-base`}>
-              <span className='me-2'>{label}</span>
+              <span className='me-2'>{formatAttributeIdentifier(attr.attribute)}</span>
               {hasFlag && (
                 <input
                   type="checkbox"

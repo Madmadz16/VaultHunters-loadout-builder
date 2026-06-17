@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "the_vault:item/gear/armor/_unidentified/helmet",
+    "layer1": "the_vault:item/gear/armor/spiral_guardian/helmet_overlay"
+  }
+}

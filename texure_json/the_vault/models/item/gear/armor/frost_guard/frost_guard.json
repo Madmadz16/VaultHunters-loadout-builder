@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "the_vault:item/gear/armor/_unidentified/boots",
+    "layer1": "the_vault:item/gear/armor/frost_guard/boots_overlay"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "the_vault:item/gear/armor/_unidentified/chestplate",
+    "layer1": "the_vault:item/gear/armor/frozen_throne/chestplate_overlay"
+  }
+}
